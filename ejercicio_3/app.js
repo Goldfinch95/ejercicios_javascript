@@ -3,7 +3,7 @@ const btnSend = document.getElementById("btn__send");
 const ulResults = document.getElementById("ul__result");
 
 let numbers = [];
-let total = 0;
+
 
 
 
@@ -13,23 +13,30 @@ const getInputsValues = ()=>{
 }
 
 const addUserNumbers = ()=>{
-    
+    let total = 0;
+    let promedio = 0;
     for(i=0; i < numbers.length; i++){
-        
+        if(numbers[i] < 0){
+            break
+        }
+        else{
+            total = total + numbers[i];
+            promedio = promedio + numbers[i] / numbers.length
+        }
     }
-    console.log(total)
+    return {total, promedio}
 }
-/*
-const showResults = (result)=>{
-    ulResults.innerHTML = `La suma de los números da: ${result}`
-}*/
+
+
+const showResults = (result, promedio)=>{
+    if(numbers[i]< 0){
+    ulResults.innerHTML = `La suma de los números da: ${result} y el promedio es de ${promedio.toFixed(2)}`
+}
+}
 
 
 btnSend.addEventListener("click", ()=>{
     getInputsValues();
-    addUserNumbers();
-    
-    //const numberValue = getInputsValues();
-    //const result = addUserNumbers(numberValue, click);
-    //showResults(result);
+    const {total, promedio} = addUserNumbers();
+    showResults(total, promedio);
 })
